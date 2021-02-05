@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use chriskacerguis\RestServer\RestController;
 
 class Auth extends RestController {
-    
+
     function __construct()
     {
         // Construct the parent class
@@ -27,9 +27,7 @@ class Auth extends RestController {
             );
 
         $result = $this->M_auth->get_user($where);
-        print_r($result);exit;
         if($result != null){
-            
             $this->response( [
                 'status' => true,
                 'message' => 'found',
