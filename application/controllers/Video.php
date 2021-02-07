@@ -63,9 +63,10 @@ class Video extends RestController {
             $data = array(
                 'video_judul' => $judul,
                 'video_filename' => $filename,
-                'video_filepath' => base_url('assets/videos').$filename,
+                'video_filepath' => base_url('assets/videos/').$filename,
                 'mdb' => $mdb,
-                'mdb_name' => $mdb_name
+                'mdb_name' => $mdb_name,
+                'mdd' => date('Y-m-d H:i:s')
             );
 
             $response = $this->M_videos->add($data);
