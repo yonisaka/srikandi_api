@@ -4,13 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use chriskacerguis\RestServer\RestController;
 
 class Auth extends RestController {
-    
+
     function __construct()
     {
         // Construct the parent class
         parent::__construct();
         $this->load->model('M_auth');
-        $this->load->model('M_videos');
         Header('Access-Control-Allow-Origin: *'); //for allow any domain, insecure
         Header('Access-Control-Allow-Headers: *'); //for allow any headers, insecure
         Header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE'); //method allowed
@@ -30,13 +29,11 @@ class Auth extends RestController {
         $result = $this->M_auth->get_user($where)->row_array();
         // print_r($result);exit;
         if($result != null){
-            
             $this->response( [
                 'status' => true,
                 'message' => 'found',
                 'data' => $result
             ], 200 );
-
         }else{
             $this->response( [
                 'status' => false,

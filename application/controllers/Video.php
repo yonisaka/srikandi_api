@@ -4,7 +4,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 use chriskacerguis\RestServer\RestController;
 
 class Video extends RestController {
-    
     function __construct()
     {
         // Construct the parent class
@@ -68,7 +67,9 @@ class Video extends RestController {
                 'mdb' => $mdb,
                 'mdb_name' => $mdb_name
             );
+
             $response = $this->M_videos->add($data);
+
             if($response == null){
                 $this->response(
                     [

@@ -13,8 +13,8 @@ Class M_videos extends CI_Model{
     }
 
     public function add($data){
+
         if(! $this->db->insert('tb_video', $data)){
-            
             return $this->db->error();
         }
     }
