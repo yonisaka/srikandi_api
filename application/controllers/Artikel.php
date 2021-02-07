@@ -3,20 +3,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 use chriskacerguis\RestServer\RestController;
 
-class Video extends RestController {
+class Artikel extends RestController {
+    
     function __construct()
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('M_videos');
+        $this->load->model('M_artikel');
         Header('Access-Control-Allow-Origin: *'); //for allow any domain, insecure
         Header('Access-Control-Allow-Headers: *'); //for allow any headers, insecure
         Header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE'); //method allowed
     }
 
     public function show_get(){
-        $id = $this->input->get('video_id');
-        $response = $this->M_videos->list($id);
+        $id = $this->input->get('artikel_id');
+        $response = $this->M_artikel->list($id);
         
         if($response){
             $this->response(
@@ -36,12 +37,13 @@ class Video extends RestController {
     }
 
     public function add_post(){
-        $judul = $this->post('video_judul');
+        $judul = $this->post('artikel_judul');
+        $isi = $this->post('artikel_isi');
         $mdb = $this->post('mdb');
         $mdb_name = $this->post('mdb_name');
         
-        $config['upload_path']          = './assets/videos';
-        $config['allowed_types']        = 'mp4|mkv|3gp';
+        $config['upload_path']          = './assets/artikel';
+        $config['allowed_types']        = 'jpg|png|jpeg';
         $config['max_size']             = 100000;
         $config['max_width']            = 0;
         $config['max_height']           = 0;
@@ -61,15 +63,14 @@ class Video extends RestController {
             $upload_data = array('upload_data' => $this->upload->data());
             $filename = $upload_data['upload_data']['file_name'];
             $data = array(
-                'video_judul' => $judul,
-                'video_filename' => $filename,
-                'video_filepath' => base_url('assets/videos').$filename,
+                'artikel_judul' => $judul,
+                'artikel_isi' => $isi,
+                'artikel_filename' => $filename,
+                'artikel_filepath' => base_url('assets/videos').$filename,
                 'mdb' => $mdb,
                 'mdb_name' => $mdb_name
             );
-
-            $response = $this->M_videos->add($data);
-
+            $response = $this->M_artikel->add($data);
             if($response == null){
                 $this->response(
                     [

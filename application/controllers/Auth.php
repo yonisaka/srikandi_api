@@ -41,5 +41,4 @@ class Auth extends RestController {
             ], 404 );
         }
     }
-
 }
