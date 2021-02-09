@@ -6,7 +6,7 @@ Class M_artikel extends CI_Model{
         if($id != null){
             $result = $this->db->query("SELECT * FROM tb_artikel WHERE artikel_id = '$id'")->row_array();
         }else{
-            $result = $this->db->query("SELECT * FROM tb_artikel")->result_array();
+            $result = $this->db->query("SELECT a.*, CONCAT(SUBSTRING(artikel_isi, 1, 40), '...') AS isi_ringkas FROM tb_artikel a")->result_array();
         }
                         
         return $result;

@@ -39,6 +39,7 @@ class Artikel extends RestController {
     public function add_post(){
         $judul = $this->post('artikel_judul');
         $isi = $this->post('artikel_isi');
+        $tanggal = $this->post('artikel_tanggal');
         $mdb = $this->post('mdb');
         $mdb_name = $this->post('mdb_name');
         
@@ -65,8 +66,9 @@ class Artikel extends RestController {
             $data = array(
                 'artikel_judul' => $judul,
                 'artikel_isi' => $isi,
+                'artikel_tanggal' => $tanggal,
                 'artikel_filename' => $filename,
-                'artikel_filepath' => base_url('assets/videos').$filename,
+                'artikel_filepath' => base_url('assets/artikel/').$filename,
                 'mdb' => $mdb,
                 'mdb_name' => $mdb_name
             );
