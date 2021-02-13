@@ -18,12 +18,10 @@ class Auth extends RestController {
     public function login_post(){
         $email = $this->post('user_mail');
         $password = $this->post('user_password');
-        $user_role = $this->post('user_role');
 
         $where = array(
             'user_mail' => $email,
             'password' => md5($password),
-            'role' => $user_role
             );
 
         $result = $this->M_auth->get_user($where)->row_array();
