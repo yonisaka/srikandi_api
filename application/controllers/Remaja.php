@@ -59,8 +59,8 @@ class Remaja extends RestController {
             'pasien_telp' => $telp,
             'mdd' => date('Y-m-d H:i:s')
         );
-        
         $response = $this->M_remaja->insert_remaja($data);
+        // print_r($response);exit;
 
         if($response == null){
             $this->response(
