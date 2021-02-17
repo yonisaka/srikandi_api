@@ -26,8 +26,8 @@ class Remaja extends RestController {
         $jenis = $this->post('pasien_jenis');
         $alamat = $this->post('pasien_alamat');
         $umur = $this->post('pasien_umur');
-        $hb = $this->post('pasien_hb');
         $telp = $this->post('pasien_telp');
+        $hb = $this->post('pasien_hb');
         $gejala = $this->post('pasien_gejala');
         $js_gejala=json_encode($gejala);
 
@@ -54,13 +54,22 @@ class Remaja extends RestController {
             'pasien_alamat' => $alamat,
             'pasien_jenis_kelamin' => $jenis,
             'pasien_umur' => $umur,
-            'pasien_gejala' => $js_gejala,
-            'pasien_hb' => $hb,
+            // 'pasien_gejala' => $js_gejala,
+            // 'pasien_hb' => $hb,
             'pasien_telp' => $telp,
             'mdd' => date('Y-m-d H:i:s')
         );
-        $response = $this->M_remaja->insert_remaja($data);
-        // print_r($response);exit;
+        
+        $remaja = $this->M_remaja->insert_remaja($data);
+        
+        $data = array(
+            'pasien_id' => $remaja,
+            'pasien_gejala' => $js_gejala,
+            'pasien_homoglobin' => $hb,
+            'mdd' => date('Y-m-d H:i:s'),
+        );
+        
+        $response = $this->M_remaja->insert_konsultasi($data);
 
         if($response == null){
             $this->response(
@@ -79,25 +88,25 @@ class Remaja extends RestController {
         }
     }
 
-    public function show_get(){
-        $id = $this->input->get('pasien_id');
-        $response = $this->M_remaja->list($id);
+    // public function show_get(){
+    //     $id = $this->input->get('pasien_id');
+    //     $response = $this->M_remaja->list($id);
         
-        if($response){
-            $this->response(
-                [
-                    'status' => true,
-                    'result' => $response
-                ]
-            );
-        }else{
-            $this->response(
-                [
-                    'status' => false,
-                    'result' => "No Objek Found"
-                ]
-            );
-        }
-    }
+    //     if($response){
+    //         $this->response(
+    //             [
+    //                 'status' => true,
+    //                 'result' => $response
+    //             ]
+    //         );
+    //     }else{
+    //         $this->response(
+    //             [
+    //                 'status' => false,
+    //                 'result' => "No Objek Found"
+    //             ]
+    //         );
+    //     }
+    // }
     
 }
