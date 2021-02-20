@@ -41,12 +41,12 @@ class Remaja extends RestController {
 
         $user = $this->M_remaja->insert_user($data);
 
-        $where = array(
-            'user_mail' => $email,
-            'password' => md5($password),
-            );
+        // $where = array(
+        //     'user_mail' => $email,
+        //     'password' => md5($password),
+        // );
 
-        $getUserid = $this->M_auth->get_user($where)->row_array();
+        $getUserid = $this->M_auth->get_user($email, md5($password))->row_array();
         
         $data = array(
             'user_id' => $getUserid['user_id'],

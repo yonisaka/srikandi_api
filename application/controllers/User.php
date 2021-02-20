@@ -41,17 +41,18 @@ class User extends RestController {
         $nama = $this->post('user_nama');
         $email = $this->post('user_mail');
         $password = $this->post('user_password');
-        $mdb = $this->post('mdb');
-        $mdb_name = $this->post('mdb_name');
-        $role = 'pasien';
+        // $mdb = $this->post('mdb');
+        // $mdb_name = $this->post('mdb_name');
+        $role = 'admin';
 
         $data = array(
             'username' => $nama,
             'user_mail' => $email,
             'password' => md5($password),
             'role' => $role,
-            'mdb' => $mdb,
-            'mdb_name' => $mdb_name
+            // 'mdb' => $mdb,
+            // 'mdb_name' => $mdb_name
+            'mdd' => date('Y-m-d H:i:s')
         );
 
         $response = $this->M_user->add($data);
