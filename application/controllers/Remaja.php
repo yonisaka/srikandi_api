@@ -88,25 +88,45 @@ class Remaja extends RestController {
         }
     }
 
-    // public function show_get(){
-    //     $id = $this->input->get('pasien_id');
-    //     $response = $this->M_remaja->list($id);
+    public function show_get(){
+        $id = $this->input->get('pasien_id');
+        $response = $this->M_remaja->list($id);
         
-    //     if($response){
-    //         $this->response(
-    //             [
-    //                 'status' => true,
-    //                 'result' => $response
-    //             ]
-    //         );
-    //     }else{
-    //         $this->response(
-    //             [
-    //                 'status' => false,
-    //                 'result' => "No Objek Found"
-    //             ]
-    //         );
-    //     }
-    // }
+        if($response){
+            $this->response(
+                [
+                    'status' => true,
+                    'result' => $response
+                ]
+            );
+        }else{
+            $this->response(
+                [
+                    'status' => false,
+                    'result' => "No Objek Found"
+                ]
+            );
+        }
+    }
     
+    public function pasien_user_get(){
+        $id = $this->input->get('user_id');
+        $response = $this->M_remaja->get_pasien_user($id);
+        
+        if($response){
+            $this->response(
+                [
+                    'status' => true,
+                    'result' => $response
+                ]
+            );
+        }else{
+            $this->response(
+                [
+                    'status' => false,
+                    'result' => "No Objek Found"
+                ]
+            );
+        }
+    }
 }

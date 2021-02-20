@@ -22,11 +22,18 @@ Class M_remaja extends CI_Model{
     }
 
     public function list($id){
-        if($id != null){
-            $result = $this->db->query("SELECT * FROM tb_remaja WHERE pasien_id = '$id'")->row_array();
-        }else{
-            $result = $this->db->query("SELECT * FROM tb_remaja a INNER JOIN tb_konsultasi b ON a.pasien_id = b.pasien_id")->result_array();
-        }
+
+        $result = $this->db->query("SELECT *, a.mdd AS tanggal_konsultasi FROM tb_konsultasi a 
+        LEFT JOIN tb_remaja b ON a.pasien_id = b.pasien_id
+        WHERE a.pasien_id = '$id'
+        ORDER BY a.mdd DESC")->result_array();
+                        
+        return $result;
+    }
+
+    public function get_pasien_user($id){
+
+        $result = $this->db->query("SELECT * FROM tb_remaja WHERE user_id = '$id'")->row_array();
                         
         return $result;
     }

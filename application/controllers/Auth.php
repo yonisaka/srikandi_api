@@ -19,12 +19,12 @@ class Auth extends RestController {
         $email = $this->post('user_mail');
         $password = $this->post('user_password');
 
-        $where = array(
-            'user_mail' => $email,
-            'password' => md5($password),
-            );
+        // $where = array(
+        //     'user_mail' => $email,
+        //     'password' => md5($password),
+        // );
 
-        $result = $this->M_auth->get_user($where)->row_array();
+        $result = $this->M_auth->get_user($email, md5($password))->row_array();
         // print_r($result);exit;
         if($result != null){
             $this->response( [

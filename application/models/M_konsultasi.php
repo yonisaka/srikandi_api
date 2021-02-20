@@ -2,6 +2,13 @@
 
 Class M_konsultasi extends CI_Model{
 
+    public function insert_konsultasi($data){
+        if(! $this->db->insert('tb_konsultasi', $data)){
+
+            return $this->db->error();
+        }
+    }
+    
     public function list($id){
         if($id != null){
             $result = $this->db->query("SELECT a.*, b.*, c.user_mail FROM tb_konsultasi a 
