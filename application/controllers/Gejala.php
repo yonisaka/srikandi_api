@@ -8,14 +8,14 @@ class Gejala extends RestController {
     {
         // Construct the parent class
         parent::__construct();
-        $this->load->model('M_Gejala');
+        $this->load->model('M_gejala');
         Header('Access-Control-Allow-Origin: *'); //for allow any domain, insecure
         Header('Access-Control-Allow-Headers: *'); //for allow any headers, insecure
         Header('Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE'); //method allowed
     }
 
     public function show_get(){
-        $response = $this->M_Gejala->list();
+        $response = $this->M_gejala->list();
         
         if($response){
             $this->response(
